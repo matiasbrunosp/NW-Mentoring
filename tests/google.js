@@ -16,8 +16,6 @@ module.exports = {
     'Open images and save screenshot': function (nightwatch) {
         const query = 'Libertadores Madrid 2018';
 
-        // nightwatch.waitAndSearch(nightwatch, this.elements.input, query);
-        
         const homePage = nightwatch.page.homePage();
         homePage.setQuery(query);
         homePage.clickSearch();
