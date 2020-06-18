@@ -1,0 +1,5 @@
+node_modules
+screenshots
+tests_output
+chromedriver.log
+package-lock.json
