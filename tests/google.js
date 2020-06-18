@@ -24,8 +24,6 @@ module.exports = {
         nightwatch.waitForElementVisible(this.elements.input);
         nightwatch.waitForElementVisible(this.elements.results);
 
-        // nightwatch.waitForElementVisible(this.elements.imgBtn);
-        // nightwatch.click(this.elements.imgBtn);
         const resultsPage = nightwatch.page.results();
         resultsPage.clickImages();
 
