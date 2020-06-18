@@ -1,8 +1,7 @@
 module.exports = {
     elements: {
         input: '.gLFyf.gsfi',
-        results: '#center_col #res',
-        imgBtn: '.hdtb-mitem:nth-of-type(2) a'
+        results: '#center_col #res'
     },
 
     beforeEach: function (nightwatch) {
