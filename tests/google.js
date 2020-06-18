@@ -19,14 +19,12 @@ module.exports = {
         homePage.setQuery(query);
         homePage.clickSearch();
 
-        nightwatch.pause(1000);
         nightwatch.waitForElementVisible(this.elements.input);
         nightwatch.waitForElementVisible(this.elements.results);
 
         const resultsPage = nightwatch.page.resultsPage();
         resultsPage.clickImages();
 
-        nightwatch.pause(2000);
         nightwatch.saveScreenshot('./screenshots/images.png');
     }
 }
