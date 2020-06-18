@@ -16,9 +16,11 @@ module.exports = {
     'Open images and save screenshot': function (nightwatch) {
         const query = 'Libertadores Madrid 2018';
 
-        nightwatch.waitForElementVisible(this.elements.input);
-        nightwatch.sendKeys(this.elements.input, query);
-        nightwatch.sendKeys(this.elements.input, nightwatch.Keys.ENTER);
+        // nightwatch.waitForElementVisible(this.elements.input);
+        // nightwatch.sendKeys(this.elements.input, query);
+        // nightwatch.sendKeys(this.elements.input, nightwatch.Keys.ENTER);
+
+        nightwatch.waitAndSearch(nightwatch, this.elements.input, query);
 
         nightwatch.pause(1000);
         nightwatch.waitForElementVisible(this.elements.input);
