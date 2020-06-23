@@ -1,5 +1,5 @@
 module.exports = {
-    "src_folders": ["tests"],
+    "src_folders": ["tests/twitter.js"],
     "page_objects_path": ["pages"],
 
     "webdriver": {
