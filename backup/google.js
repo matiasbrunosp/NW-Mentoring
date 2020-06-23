@@ -19,7 +19,7 @@ module.exports = {
         homePage.setQuery(query);
         homePage.clickSearch();
 
-        nightwatch.waitForElementVisible(this.elements.input);
+        nightwatch.waitForElementVisible(this.elements.input, "input element is visible");
         nightwatch.waitForElementVisible(this.elements.results);
 
         const resultsPage = nightwatch.page.resultsPage();
