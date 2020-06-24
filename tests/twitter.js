@@ -12,16 +12,16 @@ module.exports = {
     },
 
     beforeEach: function (nightwatch) {
-        const usr = 'matiasbrunousers@gmail.com';
-        const pwd = 'p455word';
-
         nightwatch.url('https://www.twitter.com/');
         nightwatch.resizeWindow(1280, 800);
 
-        nightwatch.click(this.elements.loginBtn);
-        nightwatch.setValue(this.elements.usrInput, usr);
-        nightwatch.setValue(this.elements.pwdInput, pwd);
-        nightwatch.useXpath().click(this.elements.doLoginBtn);
+        const landingPage = nightwatch.page.landingPage();
+        landingPage.goToLoginPage();
+
+        const loginPage = nightwatch.page.loginPage();
+        loginPage.setUsername();
+        loginPage.setPassword();
+        loginPage.clickLogin();
     },
 
     afterEach: function (nightwatch) {
