@@ -1,22 +1,43 @@
 module.exports = {
-    // '@disabled': true,
-    elements: {},
+    elements: {
+        loginBtn: '[data-testid="login"]',
+        usrInput: '[name="session[username_or_email]"][type="text"]',
+        pwdInput: '[name="session[password]"][type="password"]',
+        doLoginBtn: '//span[text()="Log in"]',
+        homeBtn: '[aria-label="Home"]',
+        profileBtn: '[aria-label="Profile"]',
+        usrDescription: '[data-testid="UserDescription"]',
+        tweetTxtArea: '[data-testid="tweetTextarea_0"]',
+        tweetBtn: '[data-testid="tweetButtonInline"]'
+    },
 
-    'Login and go to profile': function (nightwatch) {
+    beforeEach: function (nightwatch) {
+        const usr = 'matiasbrunousers@gmail.com';
+        const pwd = 'p455word';
 
         nightwatch.url('https://www.twitter.com/');
         nightwatch.resizeWindow(1280, 800);
 
-        nightwatch.click('[data-testid="login"]');
-        nightwatch.setValue('[name="session[username_or_email]"][type="text"]', 'matiasbrunousers@gmail.com');
-        nightwatch.setValue('[name="session[password]"][type="password"]', 'p455word');
-        nightwatch.useXpath().click('//span[text()="Log in"]');
+        nightwatch.click(this.elements.loginBtn);
+        nightwatch.setValue(this.elements.usrInput, usr);
+        nightwatch.setValue(this.elements.pwdInput, pwd);
+        nightwatch.useXpath().click(this.elements.doLoginBtn);
+    },
 
-        nightwatch.useCss().click('[aria-label="Home"]');
-
-        nightwatch.click('[aria-label="Profile"]');
-        nightwatch.waitForElementVisible('[data-testid="UserDescription"]', 'User bio is correctly displayed');
-
+    afterEach: function (nightwatch) {
         nightwatch.end();
+    },
+
+    'Login and go to profile': function (nightwatch) {
+        nightwatch.useCss().click(this.elements.homeBtn);
+        nightwatch.click(this.elements.profileBtn);
+        nightwatch.waitForElementVisible(this.elements.usrDescription, 'User bio is correctly displayed');
+    },
+
+    'Login and send a random tweet': function (nightwatch) {
+        nightwatch.useCss().click(this.elements.homeBtn);
+        const randomNumber = Math.floor((Math.random() * 100000) + 1);
+        nightwatch.setValue(this.elements.tweetTxtArea, "Automated Message #" + randomNumber);
+        nightwatch.click(this.elements.tweetBtn);
     }
 }
