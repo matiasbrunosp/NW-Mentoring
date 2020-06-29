@@ -2,26 +2,25 @@ module.exports = {
     elements: {
         usrInput: '[name="session[username_or_email]"][type="text"]',
         pwdInput: '[name="session[password]"][type="password"]',
-        doLoginBtn: {
+        loginBtn: {
             selector: '//span[text()="Log in"]',
             locateStrategy: 'xpath'
         }
     },
 
     commands: [{
-        setUsername() {
-            this.setValue(this.elements.usrInput, 'matiasbrunousers@gmail.com');
-            return this;
+        setUsername(usr) {
+            if (!usr) usr = 'matiasbrunousers@gmail.com'
+            return this.setValue(this.elements.usrInput, usr);
         },
 
-        setPassword() {
-            this.setValue(this.elements.pwdInput, 'p455word');
-            return this;
+        setPassword(pwd) {
+            if (!pwd) pwd = 'p455word'
+            return this.setValue(this.elements.pwdInput, pwd);
         },
 
         clickLogin() {
-            this.click(this.elements.doLoginBtn);
-            return this;
+            return this.click(this.elements.loginBtn);
         }
     }]
 };
