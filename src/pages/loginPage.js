@@ -10,7 +10,7 @@ module.exports = {
 
     commands: [{
         setUsername(usr) {
-            if (!usr) usr = 'matiasbrunousers@gmail.com'
+            if (!usr) usr = 'matiasbrunousers@gmail.com';
             return this.setValue(this.elements.usrInput, usr);
         },
 
@@ -19,8 +19,9 @@ module.exports = {
             return this.setValue(this.elements.pwdInput, pwd);
         },
 
-        clickLogin() {
-            return this.click(this.elements.loginBtn);
+        clickLogin(nightwatch) {
+            this.click(this.elements.loginBtn);
+            return nightwatch.page.homePage();
         }
     }]
 };
