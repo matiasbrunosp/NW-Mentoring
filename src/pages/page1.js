@@ -1,10 +1,5 @@
 const common = require('./common.js')
 
-const elements = {
-    usrInput: '[name="session[username_or_email]"][type="text"]',
-    pwdInput: '[name="session[password]"][type="password"]',
-};
-
 const commands = {
     setUsername(usr) {
         if (!usr) usr = 'matiasbrunousers@gmail.com';
@@ -17,12 +12,14 @@ const commands = {
     }
 };
 
-Object.assign(elements, common.elements[0]);
 Object.assign(commands, common.commands[0]);
 
 module.exports = {
     url: 'https://www.twitter.com',
 
-    elements: [elements],
+    elements: {
+        usrInput: '[name="session[username_or_email]"][type="text"]',
+        pwdInput: '[name="session[password]"][type="password"]'
+    },
     commands: [commands]
 };
