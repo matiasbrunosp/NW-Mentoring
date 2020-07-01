@@ -1,7 +1,7 @@
 var data = require('../data/data.json');
 
 module.exports = {
-    '@disabled': true,
+    // '@disabled': true,
 
     elements: {
         usrDescription: '[data-testid="UserDescription"]',
