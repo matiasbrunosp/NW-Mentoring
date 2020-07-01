@@ -5,10 +5,6 @@ const extraCommands = require('../commands/extraCommands');
 module.exports = {
     // '@disabled': true,
 
-    elements: {
-        usrDescription: '[data-testid="UserDescription"]',
-    },
-
     beforeEach: function (nightwatch) {
         const landingPage = nightwatch.page.landingPage();
         const loginPage = landingPage.navigate().goToLoginPage(nightwatch);
