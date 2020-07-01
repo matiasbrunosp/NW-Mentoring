@@ -41,7 +41,7 @@ module.exports = {
         profilePage.isUserDescriptionDisplayed();
     },
 
-    'Login and send a random tweet': !function (nightwatch) {
+    'Send a random Tweet functionality': function (nightwatch) {
         const homePage = nightwatch.page.homePage();
         const random = extraCommands.default.setRandom(30);
 
