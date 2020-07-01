@@ -10,10 +10,7 @@ function sidebarCommands(commands) {
         bookmarksTabBtn: '[aria-label="Bookmarks"]',
         listsTabBtn: '[aria-label="Lists"]',
         profileTabBtn: '[aria-label="Profile"]',
-        moreTabBtn: '[data-testid="AppTabBar_More_Menu"]',
-        newTweetTabBtn: '[data-testid="SideNav_NewTweet_Button"]',
-        tweetTextArea: '[aria-labelledby="modal-header"] [data-testid="tweetTextarea_0"]',
-        sendTweetBtn: '[data-testid="tweetButton"]'
+        moreTabBtn: '[data-testid="AppTabBar_More_Menu"]'
     }
 
     const cmds = {
