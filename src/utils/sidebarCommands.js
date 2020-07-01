@@ -17,24 +17,29 @@ function sidebarCommands(commands) {
             return this.click(elements.homeTabBtn);
         },
 
-        clickExplore() {
-            return this.click(elements.exploreTabBtn);
+        clickExplore(nightwatch) {
+            this.click(elements.exploreTabBtn);
+            return nightwatch.page.explorePage();
         },
 
-        clickNotifications() {
-            return this.click(elements.notificationsTabBtn);
+        clickNotifications(nightwatch) {
+            this.click(elements.notificationsTabBtn);
+            return nightwatch.page.notificationsPage();
         },
 
-        clickMessage() {
-            return this.click(elements.messagesTabBtn);
+        clickMessages(nightwatch) {
+            this.click(elements.messagesTabBtn);
+            return nightwatch.page.messagesPage();
         },
 
-        clickBookmarks() {
-            return this.click(elements.bookmarksTabBtn);
+        clickBookmarks(nightwatch) {
+            this.click(elements.bookmarksTabBtn);
+            return nightwatch.page.bookmarksPage();
         },
 
-        clickLists() {
-            return this.click(elements.listsTabBtn);
+        clickLists(nightwatch) {
+            this.click(elements.listsTabBtn);
+            return nightwatch.page.listsPage();
         },
 
         clickProfile(nightwatch) {

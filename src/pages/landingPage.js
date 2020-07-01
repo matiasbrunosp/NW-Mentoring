@@ -7,7 +7,7 @@ module.exports = {
 
     commands: [{
         goToLoginPage(nightwatch) {
-            nightwatch.resizeWindow(1280, 800);
+            this.resizeWindow(1280, 800);
             this.click(this.elements.loginBtn);
             return nightwatch.page.loginPage();
         }

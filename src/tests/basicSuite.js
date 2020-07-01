@@ -21,13 +21,27 @@ module.exports = {
         nightwatch.end();
     },
 
-    'Login and go to profile': function (nightwatch) {
+    'Sidebar Quick Access buttons functionality': function (nightwatch) {
         const homePage = nightwatch.page.homePage();
+        homePage.isHomeTimelineDisplayed();
+        const explorePage = homePage.clickExplore(nightwatch);
+        explorePage.isExploreTimelineDisplayed();
+
+        const notificationsPage = homePage.clickNotifications(nightwatch);
+        notificationsPage.isNotificationsTimelineDisplayed();
+        const messagesPage = homePage.clickMessages(nightwatch);
+        messagesPage.isMessagesTimelineDisplayed();
+
+        const bookmarksPage = homePage.clickBookmarks(nightwatch);
+        bookmarksPage.isBookmarksTimelineDisplayed();
+        const listsPage = homePage.clickLists(nightwatch);
+        listsPage.isListsTitleDisplayed();
+
         const profilePage = homePage.clickProfile(nightwatch);
-        nightwatch.waitForElementVisible(profilePage.elements.usrDescription);
+        profilePage.isUserDescriptionDisplayed();
     },
 
-    'Login and send a random tweet': function (nightwatch) {
+    'Login and send a random tweet': !function (nightwatch) {
         const homePage = nightwatch.page.homePage();
         const random = extraCommands.default.setRandom(30);
 
