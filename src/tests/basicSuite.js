@@ -21,8 +21,9 @@ module.exports = {
 
     'Login and go to profile': function (nightwatch) {
         const homePage = nightwatch.page.homePage();
-        homePage.clickProfile();
-        nightwatch.waitForElementVisible(this.elements.usrDescription, nightwatch.globals.waitForConditionTimeout);
+        const profilePage = homePage.clickProfile(nightwatch);
+        nightwatch.waitForElementVisible(profilePage.elements.usrDescription,
+            nightwatch.globals.waitForConditionTimeout);
     },
 
     'Login and send a random tweet': function (nightwatch) {

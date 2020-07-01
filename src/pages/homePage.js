@@ -1,4 +1,5 @@
 var tweets = require('../data/tweets.json');
+
 module.exports = {
     elements: {
         homeTabBtn: '[data-testid="AppTabBar_Home_Link"]',
@@ -39,8 +40,9 @@ module.exports = {
             return this.click(this.elements.listsTabBtn);
         },
 
-        clickProfile() {
-            return this.click(this.elements.profileTabBtn);
+        clickProfile(nightwatch) {
+            this.click(this.elements.profileTabBtn);
+            return nightwatch.page.profilePage();
         },
 
         clickMore() {
