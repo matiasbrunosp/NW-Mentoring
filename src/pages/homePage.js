@@ -1,54 +1,14 @@
-var tweets = require('../data/tweets.json');
+const tweets = require('../data/tweets.json');
+const sidebarCommands = require('../utils/sidebarCommands');
 
 module.exports = {
     elements: {
-        homeTabBtn: '[data-testid="AppTabBar_Home_Link"]',
-        exploreTabBtn: '[data-testid="AppTabBar_Explore_Link"]',
-        notificationsTabBtn: '[data-testid="AppTabBar_Notifications_Link"]',
-        messagesTabBtn: '[data-testid="AppTabBar_DirectMessage_Link"]',
-        bookmarksTabBtn: '[aria-label="Bookmarks"]',
-        listsTabBtn: '[aria-label="Lists"]',
-        profileTabBtn: '[aria-label="Profile"]',
-        moreTabBtn: '[data-testid="AppTabBar_More_Menu"]',
         newTweetTabBtn: '[data-testid="SideNav_NewTweet_Button"]',
         tweetTextArea: '[aria-labelledby="modal-header"] [data-testid="tweetTextarea_0"]',
         sendTweetBtn: '[data-testid="tweetButton"]'
     },
 
-    commands: [{
-        clickHome() {
-            return this.click(this.elements.homeTabBtn);
-        },
-
-        clickExplore() {
-            return this.click(this.elements.exploreTabBtn);
-        },
-
-        clickNotifications() {
-            return this.click(this.elements.notificationsTabBtn);
-        },
-
-        clickMessage() {
-            return this.click(this.elements.messagesTabBtn);
-        },
-
-        clickBookmarks() {
-            return this.click(this.elements.bookmarksTabBtn);
-        },
-
-        clickLists() {
-            return this.click(this.elements.listsTabBtn);
-        },
-
-        clickProfile(nightwatch) {
-            this.click(this.elements.profileTabBtn);
-            return nightwatch.page.profilePage();
-        },
-
-        clickMore() {
-            return this.click(this.elements.moreTabBtn);
-        },
-
+    commands: sidebarCommands.default([{
         clickNewTweet() {
             return this.click(this.elements.newTweetTabBtn);
         },
@@ -64,5 +24,5 @@ module.exports = {
             this.setValue(this.elements.tweetTextArea, tweet);
             return this.sendTweet();
         }
-    }]
+    }])
 };
