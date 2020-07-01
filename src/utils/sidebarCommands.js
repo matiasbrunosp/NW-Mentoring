@@ -1,7 +1,6 @@
 const _ = require('lodash');
 
 function sidebarCommands(commands) {
-
     const elements = {
         homeTabBtn: '[data-testid="AppTabBar_Home_Link"]',
         exploreTabBtn: '[data-testid="AppTabBar_Explore_Link"]',

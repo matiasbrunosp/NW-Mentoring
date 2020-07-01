@@ -1,4 +1,6 @@
+const tweets = require('../data/tweets.json');
 var data = require('../data/data.json');
+const extraCommands = require('../commands/extraCommands');
 
 module.exports = {
     // '@disabled': true,
@@ -22,12 +24,17 @@ module.exports = {
     'Login and go to profile': function (nightwatch) {
         const homePage = nightwatch.page.homePage();
         const profilePage = homePage.clickProfile(nightwatch);
-        nightwatch.waitForElementVisible(profilePage.elements.usrDescription,
-            nightwatch.globals.waitForConditionTimeout);
+        nightwatch.waitForElementVisible(profilePage.elements.usrDescription);
     },
 
     'Login and send a random tweet': function (nightwatch) {
         const homePage = nightwatch.page.homePage();
-        homePage.setTweet();
+        const random = extraCommands.default.setRandom(30);
+
+        homePage.clickNewTweet().setTweet(random).sendTweet();
+        nightwatch.waitForElementVisible(homePage.elements.tweetSentAlert);
+
+        const profilePage = homePage.clickProfile(nightwatch);
+        profilePage.lastTweetIsEqualsTo(tweets[['e' + random]], nightwatch);
     }
 }
