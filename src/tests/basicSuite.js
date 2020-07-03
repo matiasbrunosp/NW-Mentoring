@@ -46,5 +46,13 @@ module.exports = {
 
         const profilePage = homePage.clickProfile(nightwatch);
         profilePage.lastTweetIsEqualsTo(tweets[['e' + random]], nightwatch);
+    },
+
+    'Send a Direct Message functionality': function (nightwatch) {
+        const homePage = nightwatch.page.homePage();
+        const messagesPage = homePage.clickMessages(nightwatch);
+
+        messagesPage.clickNewMessage();
+        messagesPage.isMessagePopupDisplayed();
     }
 }
