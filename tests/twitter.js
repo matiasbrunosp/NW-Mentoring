@@ -11,7 +11,7 @@ module.exports = {
         tweetBtn: '[data-testid="tweetButtonInline"]'
     },
 
-    beforeEach: function (nightwatch) {
+    'Login and go to profile': function (nightwatch) {
         const usr = 'matiasbrunousers@gmail.com';
         const pwd = 'p455word';
 
@@ -22,22 +22,31 @@ module.exports = {
         nightwatch.setValue(this.elements.usrInput, usr);
         nightwatch.setValue(this.elements.pwdInput, pwd);
         nightwatch.useXpath().click(this.elements.doLoginBtn);
-    },
 
-    afterEach: function (nightwatch) {
-        nightwatch.end();
-    },
-
-    'Login and go to profile': function (nightwatch) {
         nightwatch.useCss().click(this.elements.homeBtn);
         nightwatch.click(this.elements.profileBtn);
         nightwatch.waitForElementVisible(this.elements.usrDescription, 'User bio is correctly displayed');
+
+        nightwatch.end();
     },
 
     'Login and send a random tweet': function (nightwatch) {
+        const usr = 'matiasbrunousers@gmail.com';
+        const pwd = 'p455word';
+
+        nightwatch.url('https://www.twitter.com/');
+        nightwatch.resizeWindow(1280, 800);
+
+        nightwatch.click(this.elements.loginBtn);
+        nightwatch.setValue(this.elements.usrInput, usr);
+        nightwatch.setValue(this.elements.pwdInput, pwd);
+        nightwatch.useXpath().click(this.elements.doLoginBtn);
+
         nightwatch.useCss().click(this.elements.homeBtn);
         const randomNumber = Math.floor((Math.random() * 100000) + 1);
         nightwatch.setValue(this.elements.tweetTxtArea, "Automated Message #" + randomNumber);
         nightwatch.click(this.elements.tweetBtn);
+
+        nightwatch.end();
     }
 }
