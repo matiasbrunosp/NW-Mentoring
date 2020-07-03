@@ -1,6 +1,6 @@
 module.exports = {
     "src_folders": ["tests/twitter.js"],
-    // "page_objects_path": ["pages"],
+    "page_objects_path": ["pages"],
 
     "webdriver": {
         "start_process": true,

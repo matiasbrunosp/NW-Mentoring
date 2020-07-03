@@ -1,15 +1,4 @@
 module.exports = {
-    elements: {
-        loginBtn: '[data-testid="login"]',
-        usrInput: '[name="session[username_or_email]"][type="text"]',
-        pwdInput: '[name="session[password]"][type="password"]',
-        doLoginBtn: '//span[text()="Log in"]',
-        homeBtn: '[aria-label="Home"]',
-        profileBtn: '[aria-label="Profile"]',
-        usrDescription: '[data-testid="UserDescription"]',
-        tweetTxtArea: '[data-testid="tweetTextarea_0"]',
-        tweetBtn: '[data-testid="tweetButtonInline"]'
-    },
 
     'Login and go to profile': function (nightwatch) {
         const usr = 'matiasbrunousers@gmail.com';
@@ -18,14 +7,23 @@ module.exports = {
         nightwatch.url('https://www.twitter.com/');
         nightwatch.resizeWindow(1280, 800);
 
-        nightwatch.click(this.elements.loginBtn);
-        nightwatch.setValue(this.elements.usrInput, usr);
-        nightwatch.setValue(this.elements.pwdInput, pwd);
-        nightwatch.useXpath().click(this.elements.doLoginBtn);
+        const landingPage = nightwatch.page.landingPage();
+        nightwatch.click(landingPage.elements.loginBtn);
 
-        nightwatch.useCss().click(this.elements.homeBtn);
-        nightwatch.click(this.elements.profileBtn);
-        nightwatch.waitForElementVisible(this.elements.usrDescription, 'User bio is correctly displayed');
+        const loginPage = nightwatch.page.loginPage();
+        nightwatch.setValue(loginPage.elements.usrInput, usr);
+        nightwatch.setValue(loginPage.elements.pwdInput, pwd);
+        nightwatch.click(loginPage.elements.doLoginBtn);
+
+        const homePage = nightwatch.page.homePage();
+        homePage.clickHomeBtn();
+        homePage.clickProfileBtn();
+        // nightwatch.click(homePage.elements.homeBtn);
+        // nightwatch.click(homePage.elements.profileBtn);
+
+        const profilePage = nightwatch.page.profilePage();
+        profilePage.waitForUserDescription();
+        // nightwatch.waitForElementVisible(profilePage.elements.usrDescription);
 
         nightwatch.end();
     },
@@ -37,15 +35,20 @@ module.exports = {
         nightwatch.url('https://www.twitter.com/');
         nightwatch.resizeWindow(1280, 800);
 
-        nightwatch.click(this.elements.loginBtn);
-        nightwatch.setValue(this.elements.usrInput, usr);
-        nightwatch.setValue(this.elements.pwdInput, pwd);
-        nightwatch.useXpath().click(this.elements.doLoginBtn);
+        const landingPage = nightwatch.page.landingPage();
+        nightwatch.click(landingPage.elements.loginBtn);
 
-        nightwatch.useCss().click(this.elements.homeBtn);
+        const loginPage = nightwatch.page.loginPage();
+        nightwatch.setValue(loginPage.elements.usrInput, usr);
+        nightwatch.setValue(loginPage.elements.pwdInput, pwd);
+        nightwatch.useXpath().click(loginPage.elements.doLoginBtn);
+
+        const homePage = nightwatch.page.homePage();
+        nightwatch.useCss().click(homePage.elements.homeBtn);
+
         const randomNumber = Math.floor((Math.random() * 100000) + 1);
-        nightwatch.setValue(this.elements.tweetTxtArea, "Automated Message #" + randomNumber);
-        nightwatch.click(this.elements.tweetBtn);
+        nightwatch.setValue(homePage.elements.tweetTxtArea, "Automated Message #" + randomNumber);
+        nightwatch.click(homePage.elements.tweetBtn);
 
         nightwatch.end();
     }
