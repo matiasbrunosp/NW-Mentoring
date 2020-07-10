@@ -1,5 +1,6 @@
 .DS_Store
 node_modules
+pending_features
 screenshots
 tests_output
 chromedriver.log

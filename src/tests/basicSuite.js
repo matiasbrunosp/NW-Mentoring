@@ -52,7 +52,17 @@ module.exports = {
         const homePage = nightwatch.page.homePage();
         const messagesPage = homePage.clickMessages(nightwatch);
 
-        messagesPage.clickNewMessage();
-        messagesPage.isMessagePopupDisplayed();
+        const random = extraCommands.default.setRandom(100000);
+        const msg = 'Automated Message #';
+
+        messagesPage.clickNewMessage().isMessagePopupDisplayed();
+        messagesPage.searchUserToMessage('Matías Bruno F', 0, nightwatch);
+
+        const conversationInfoPage = messagesPage.clickNext().clickInfo(nightwatch);
+        conversationInfoPage.isUserInfoDisplayed('Matías Bruno F', nightwatch);
+
+        conversationInfoPage.clickBack(nightwatch)
+        messagesPage.setMessage(msg, random).clickSend();
+        messagesPage.isLatestMessageEqualsTo(msg + random);
     }
 }
